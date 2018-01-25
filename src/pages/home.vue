@@ -105,7 +105,7 @@
                         <div class="reply-num">{{article.reply_count}}/<span>{{article.visit_count}}</span></div>
                         <div :class="{'article-tab':true,'curr':article.good || article.top}" @click="tab = article.good ? 'good' : article.tab">{{article.top ? "置顶" : (article.good ? "精华" : tabList[article.tab])}}</div>
                         <div class="article-title">{{article.title}}</div>
-                        <div class="last-reply-time">{{dateFmt(new Date(article.last_reply_at),"yyyy-MM-dd HH:mm:ss")}}</div>
+                        <div class="last-reply-time">{{timeAgo(new Date(article.last_reply_at))}}</div>
                     </router-link>
                 </dl>
             </div>
@@ -114,7 +114,7 @@
 </template>
 <script>
     import Header from "../components/header.vue";
-    import ajax from "../ajax.js";
+    import { ajax, timeAgo } from "../util.js";
     export default{
         data(){
             return {
@@ -125,42 +125,7 @@
             }
         },
         methods:{
-            dateFmt:function(date,fmt){
-                if(date){
-                    const month = date.getMonth() + 1;
-                    const d = date.getDate() + 1;
-                    const h = date.getHours();
-                    const m = date.getMinutes();
-                    const s = date.getSeconds();
-                    const obj = {
-                        "yyyy":date.getFullYear(),
-                        "MM":month > 9 ? month :  ("0" + month),
-                        "M":month,
-                        "dd":d > 9 ? d : ("0" + d),
-                        "d":d,
-                        "HH":h > 9 ? h : ("0" + h),
-                        "H":h,
-                        "hh":h % 12 > 9 ? h % 9 : ("0" + (h % 9)),
-                        "h":h % 12,
-                        "mm":m > 9 ? m : ("0" + m),
-                        "m":m,
-                        "ss":s > 9 ? s : ("0" + s),
-                        "s":s,
-                        "S":date.getTime() % 1000
-                    }
-                    if(fmt){
-                        for(var key in obj){
-                            var reg = new RegExp(key,"g");
-                            fmt = fmt.replace(reg,obj[key]);
-                        }
-                        return fmt;
-                    }else{
-                        return date;
-                    }
-                }else{
-                    return "";
-                }
-            },
+            timeAgo:timeAgo,
             getTopics:function(page){
                 let url = "https://cnodejs.org/api/v1/topics?tab=" + this.tab + "&page=" + (page || this.page || 1);
                 let self = this;

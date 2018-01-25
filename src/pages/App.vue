@@ -1,3 +1,4 @@
+<style src="../index.min.css"></style>
 <style>
     *{
         font-family: "微软雅黑";

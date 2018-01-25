@@ -19,6 +19,12 @@
                     color: #ccc;
                     font-size: 13px;
                     list-style:none;
+                    a{
+                        &:hover{
+                            color: #fff;
+                            text-decoration: none;
+                        }
+                    }
                 }
             }
         }

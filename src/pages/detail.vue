@@ -1,6 +1,7 @@
 <style lang="scss" scoped>
     #main{
         width: 90%;
+        min-width: 1200px;
         margin: 15px auto;
         background-color: #fff;
     }
@@ -37,26 +38,31 @@
         }
     }
 </style>
-<style scoped src="../index.min.css"></style>
+<style lang="scss">
+    .topic_content{
+        padding:10px;
+        a{
+            color:#4b8cf0;
+        }
+    }
+</style>
 <template>
     <div>
         <myHeader></myHeader>
         <div id="main">
             <div class="detail-header">
                 <div class="title">{{article.title}}</div>
-                <span>发布于 18 小时前</span><span>作者 {{article && article.author && article.author.loginname}}</span><span>{{article.visit_count}} 次浏览</span><span>来自 {{tabList[article.tab]}}</span>
+                <span>发布于 {{timeAgo(new Date(article.last_reply_at))}}</span><span>作者 {{article && article.author && article.author.loginname}}</span><span>{{article.visit_count}} 次浏览</span><span>来自 {{tabList[article.tab]}}</span>
             </div>
             <div class="content inner topic">
-                <div class="topic_content">
-                    <div class="markdown-text" v-html="article.content"></div>
-                </div>
+                <div class="topic_content" v-html="article.content"></div>
             </div>
         </div>
     </div>
 </template>
 <script>
     import Header from "../components/header.vue";
-    import ajax from "../ajax.js";
+    import { ajax, timeAgo } from "../util.js";
 
     export default {
         data(){
@@ -66,6 +72,7 @@
             }
         },
         methods:{
+            timeAgo:timeAgo,
             getTopicDetail:function(){
                 const self = this;
                 const url = "https://cnodejs.org/api/v1/topic/" + this.$route.params.id;
