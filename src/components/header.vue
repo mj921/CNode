@@ -2,18 +2,18 @@
     $headerHeight:50px;
     .header{
         height:$headerHeight;
-        min-width: 1000px;
         background-color: #444;
         .header-content{
             margin: 0 auto;
             width:90%;
+            min-width: 1200px;
             ul{
                 float: left;
                 height:$headerHeight;
                 line-height: $headerHeight;
                 li{
                     float: left;
-                    padding: 10px 15px;
+                    padding: 10px 30px 10px 0;
                     height: $headerHeight - 20px;
                     line-height: $headerHeight - 20px;
                     color: #ccc;

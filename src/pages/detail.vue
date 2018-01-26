@@ -2,6 +2,7 @@
     #main{
         width: 90%;
         min-width: 1200px;
+        max-width: 90%;
         margin: 15px auto;
         background-color: #fff;
     }
@@ -61,7 +62,6 @@
     </div>
 </template>
 <script>
-    import Header from "../components/header.vue";
     import { ajax, timeAgo } from "../util.js";
 
     export default {
@@ -87,9 +87,6 @@
                     }
                 });
             }
-        },
-        components:{
-            "myHeader":Header
         },
         created:function(){
             this.getTopicDetail();

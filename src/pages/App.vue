@@ -31,3 +31,9 @@
         <router-view></router-view>
     </div>
 </template>
+<script>
+    import Vue from "vue";
+    import Header from "../components/header.vue";
+
+    Vue.component("myHeader",Header);
+</script>

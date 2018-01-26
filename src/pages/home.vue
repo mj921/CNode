@@ -2,7 +2,8 @@
     $articleListHeight:30px;
     #main{
         margin: 15px auto;
-        min-width: 1000px;
+        min-width: 1200px;
+        max-width: 90%;
         width: 90%;
         .tabs{
             padding:10px;
@@ -113,7 +114,6 @@
     </div>
 </template>
 <script>
-    import Header from "../components/header.vue";
     import { ajax, timeAgo } from "../util.js";
     export default{
         data(){
@@ -145,9 +145,6 @@
             tab:function(){
                 this.getTopics(1);
             }
-        },
-        components:{
-            "myHeader":Header
         },
         created:function(){
             this.getTopics(1);
